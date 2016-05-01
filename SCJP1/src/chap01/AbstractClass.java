@@ -12,4 +12,8 @@ public abstract class AbstractClass {
 	 */
 	abstract String returnString();
 
+	public static void main(String[] args) {
+		System.out.println("Test");
+	}
+
 }
