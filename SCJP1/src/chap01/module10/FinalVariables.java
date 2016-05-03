@@ -4,16 +4,16 @@ import chap01.module1.Honda;
 
 /**
  * Rules Of Final Variables 
+ * 0. They should be initialized
  * 1. Once initialized the values can't be changed
  * 2. You cannot have a setter methods for final variables
- * 3. Once initialized you cannot assign new reference (refer: changeValue method) 
+ * 3. Once initialized you cannot assign new reference (refer: changeValue method)
  */
 public class FinalVariables {
 
-	private final Honda honda;
+	private final Honda honda;	
 
-	private final Integer xyz; // You can not change the value of integer once
-								// initialized
+	private final Integer xyz; // You can not change the value of integer once initialized
 
 	public Honda getHonda() {
 		return honda;
