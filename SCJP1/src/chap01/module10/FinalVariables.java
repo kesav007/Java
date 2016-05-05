@@ -5,9 +5,11 @@ import chap01.module1.Honda;
 /**
  * Rules Of Final Variables 
  * 0. They should be initialized
- * 1. Once initialized the values can't be changed
+ * 1. Once initialized the reference can't be changed but object it refers can be modified
  * 2. You cannot have a setter methods for final variables
  * 3. Once initialized you cannot assign new reference (refer: changeValue method)
+ * 4. There is no such thing called Final Object
+ * 5. If final is applied to method level (not class level) then subclasses cannot override
  */
 public class FinalVariables {
 
