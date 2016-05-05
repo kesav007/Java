@@ -1,6 +1,6 @@
 package chap01;
 
-public enum Sex {
+public enum GenderEnum {
 	MALE, FEMALE
 
 }
