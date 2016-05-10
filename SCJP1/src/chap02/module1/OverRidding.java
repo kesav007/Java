@@ -1,9 +1,6 @@
 package chap02.module1;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.Random;
 
 import chap01.module1.Accord;
 import chap01.module1.AshokLayland;
@@ -12,12 +9,19 @@ import chap01.module1.Car;
 import chap01.module1.Vechicle;
 
 /**
- * Car is a vehicle Honda is car Honda is Vehicle Bus is a Vehicle AshokLayland
- * is Bus AshokLayland is Vehicle Car is not Bus
+ * Car is a vehicle 
+ * Honda is car 
+ * Honda is Vehicle 
+ * 
+ * Bus is a Vehicle 
+ * AshokLayland is Bus 
+ * AshokLayland is also Vehicle 
+ * 
+ * Car is not Bus
  * 
  * Rules of Overriding
  * 1. Superclass method @param cannot be overridden with with subclass @param
- * Example: Superclass method vehicle @param cannot be replaced with Bus or Car object 
+ * Example: Superclass method vehicle @param cannot be replaced with Bus or Car object If it is then its overloading
  * 2. Superclass method @param can be replaced Superclass object 
  * Example: Super class method accord @param can be replace
  * with Car or Vehicle Object 
@@ -57,7 +61,8 @@ public class OverRidding extends SuperClazz {
 	/**
 	 * Overridden method can pass the Sub class param to the super class object
 	 */
-	
+
+	@Override
 	public void publicMethodVehicle(Vechicle vechicle){
 		Bus bus = new AshokLayland();
 		super.publicMethodVehicle(bus);
@@ -70,5 +75,14 @@ public class OverRidding extends SuperClazz {
 	 */
 	public void publicMethodAccord(Car car) {
 		// super.publicMethodAccord(car);
+	}
+	
+
+	/**
+	 * Over Loading
+	 */
+//	@Override
+	public void publicMethodVehicle(Car vechicle) {
+//		super.publicMethodVehicle(vechicle);
 	}
 }
