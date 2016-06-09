@@ -75,7 +75,7 @@ public class UserBean {
 		}
 	}
 
-	public String confirm() {
+	public String addConfirmUser() {
 		boolean added = true;
 		FacesMessage doneMessage = null;
 		String outcome = null;

@@ -15,13 +15,14 @@
 			<tr>
 				<td>First Name:</td>
 				<td><h:inputText label="First Name" id="fname"
-						value="#{userBean.firstName}" required="true" /> <h:message
-						for="fname" /></td>
+						value="#{userBean.firstName}" required="true" immediate="true" />
+					<h:message for="fname" /></td>
 			</tr>
 			<tr>
 				<td>Last Name:</td>
 				<td><h:inputText label="Last Name" id="lname"
-						value="#{userBean.lastName}" /> <h:message for="lname" /></td>
+						value="#{userBean.lastName}" required="true" /> <h:message
+						for="lname" /></td>
 			</tr>
 			<tr>
 				<td>Sex:</td>
@@ -59,7 +60,8 @@
 			<h:messages></h:messages>
 		</p>
 		<p>
-			<h:commandButton value="Register" action="confirm"></h:commandButton>
+			<h:commandButton value="Submit" action="edit"></h:commandButton>
+			<h:commandButton value="Cancel" action="main" immediate="true"></h:commandButton>
 		</p>
 	</h:form>
 </h:body>
