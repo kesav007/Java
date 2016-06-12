@@ -1,5 +1,4 @@
-
-	<h5>
+<h5>
 		<ol>
 			<li>Create Project and Hibernate Dependencies</li>
 			<li>Add Odbc Jar</li>
@@ -12,4 +11,4 @@
 			<li>Address Model @Embeddable, @Column</li>
 			<li>Office Address vs Home Address</li>
 		</ol>
-	</h5>
+</h5>
