@@ -11,5 +11,6 @@
 			<li>Address Model @Embeddable, @Column</li>
 			<li>@AttributeOverrides, @AttributeOverride, @Column (name, column)</li>
 			<li>Test Composite Key (Home Work) Hint @EmbeddedId</li>
+			<li>@JoinTable, @JoinColumn, @ElementCollection, Collection Configuration</li>
 		</ol>
 </h5>
