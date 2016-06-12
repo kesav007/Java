@@ -13,14 +13,21 @@ public class HibernateTest {
 		// user.setUserId(1);
 		user.setUserName("First User");
 		user.setJoinedDate(new Date());
-		Address address = new Address();
-		address.setStreet("21398 Fultonham Cir");
-		address.setCity("Ashburn");
-		address.setState("VA");
-		address.setZipcode("20147");
-		user.setAddress(address);
+		Address homeAddress = new Address();
+		homeAddress.setStreet("21398 Fultonham Cir");
+		homeAddress.setCity("Ashburn");
+		homeAddress.setState("VA");
+		homeAddress.setZipcode("20147");
+		user.setHomeAddress(homeAddress);
 		user.setDescription("Description of the user goes here");
 
+		Address officeAddress = new Address();
+		officeAddress.setStreet("123 Masters Street");
+		officeAddress.setCity("Herndon");
+		officeAddress.setState("VA");
+		officeAddress.setZipcode("20171");
+		user.setOfficeAddress(officeAddress);
+		
 		UserDetails user2 = new UserDetails();
 		// user.setUserId(1);
 		user2.setUserName("Second User");

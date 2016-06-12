@@ -1,12 +1,17 @@
 package com.kesav;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class Address {
+	@Column(name="STREET_NAME")
 	private String street;
+	@Column(name="CITY_NAME")
 	private String city;
+	@Column(name="STATE_NAME")
 	private String state;
+	@Column(name="ZIPCODE")
 	private String zipcode;
 
 	public String getStreet() {

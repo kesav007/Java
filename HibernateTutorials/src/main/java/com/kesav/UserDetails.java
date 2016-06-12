@@ -2,15 +2,16 @@ package com.kesav;
 
 import java.util.Date;
 
-import javax.annotation.Generated;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "USER_DETAILS")
@@ -23,10 +24,32 @@ public class UserDetails {
 	private String userName;
 	@Temporal(TemporalType.DATE) // annotation for to save only date
 	private Date joinedDate;
-	private Address address;
-
+	@Embedded
+	@AttributeOverrides({ @AttributeOverride(name = "street", column = @Column(name = "HOME_STREET_NAME")),
+			@AttributeOverride(name = "city", column = @Column(name = "HOME_CITY_NAME")),
+			@AttributeOverride(name = "state", column = @Column(name = "HOME_STATE_NAME")),
+			@AttributeOverride(name = "zipcode", column = @Column(name = "HOME_ZIPCODE")) })
+	private Address homeAddress;
+	@Embedded
+	private Address officeAddress;
 	// @Lob // Lob datatype
 	private String description;
+
+	public String getDescription() {
+		return description;
+	}
+
+	public Address getHomeAddress() {
+		return homeAddress;
+	}
+
+	public Date getJoinedDate() {
+		return joinedDate;
+	}
+
+	public Address getOfficeAddress() {
+		return officeAddress;
+	}
 
 	public int getUserId() {
 		return userId;
@@ -36,12 +59,20 @@ public class UserDetails {
 		return userName;
 	}
 
-	public Date getJoinedDate() {
-		return joinedDate;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public String getDescription() {
-		return description;
+	public void setHomeAddress(Address homeAddress) {
+		this.homeAddress = homeAddress;
+	}
+
+	public void setJoinedDate(Date joinedDate) {
+		this.joinedDate = joinedDate;
+	}
+
+	public void setOfficeAddress(Address officeAddress) {
+		this.officeAddress = officeAddress;
 	}
 
 	public void setUserId(int userId) {
@@ -52,19 +83,4 @@ public class UserDetails {
 		this.userName = userName;
 	}
 
-	public void setJoinedDate(Date joinedDate) {
-		this.joinedDate = joinedDate;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
 }
