@@ -1,0 +1,10 @@
+Create Project and Hibernate Dependencies
+Configure hibernate.cfg.xml
+Create Model Object UserDetails
+@Entity and @Id @Column
+@Entity vs @Table
+@Transiant, @Temporal, @lob
+@GenerateValue and stragey
+Address Model @Embeddable, @Column
+Office Address vs Home Address 
+
