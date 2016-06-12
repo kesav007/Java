@@ -9,6 +9,6 @@
 			<li>@Transiant, @Temporal, @lob</li>
 			<li>@GenerateValue and stragey</li>
 			<li>Address Model @Embeddable, @Column</li>
-			<li>Office Address vs Home Address</li>
+			<li>@AttributeOverrides, @AttributeOverride, @Column (name, column)</li>
 		</ol>
 </h5>
