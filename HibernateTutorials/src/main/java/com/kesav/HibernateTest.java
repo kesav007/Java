@@ -4,7 +4,6 @@ import java.util.Date;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 public class HibernateTest {
 
@@ -18,7 +17,7 @@ public class HibernateTest {
 		homeAddress.setCity("Ashburn");
 		homeAddress.setState("VA");
 		homeAddress.setZipcode("20147");
-		user.setHomeAddress(homeAddress);
+		// user.setHomeAddress(homeAddress);
 		user.setDescription("Description of the user goes here");
 
 		Address officeAddress = new Address();
@@ -26,8 +25,11 @@ public class HibernateTest {
 		officeAddress.setCity("Herndon");
 		officeAddress.setState("VA");
 		officeAddress.setZipcode("20171");
-		user.setOfficeAddress(officeAddress);
-		
+
+		user.getListOfAddresses().add(homeAddress);
+		user.getListOfAddresses().add(officeAddress);
+		// user.setOfficeAddress(officeAddress);
+
 		UserDetails user2 = new UserDetails();
 		// user.setUserId(1);
 		user2.setUserName("Second User");
