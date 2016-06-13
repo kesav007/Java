@@ -3,10 +3,13 @@ package com.kesav;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -32,6 +35,8 @@ public class UserDetails {
 	@Temporal(TemporalType.DATE) // annotation for to save only date
 	private Date joinedDate;
 
+	private Company company = new Company();
+
 	/*-
 	 * Made the the variable name as listOfAddress, Try Set vs List
 	 * If @JoinTable not provided, Hibernate will generate for you
@@ -45,6 +50,16 @@ public class UserDetails {
 	@GenericGenerator(strategy = "seqhilo", name = "hilo-gen")
 	@CollectionId(columns = { @Column(name = "ADDRESS_ID") }, generator = "hilo-gen", type = @Type(type = "long"))
 	private Collection<Address> listOfAddresses = new ArrayList<Address>();
+
+	/*-
+	* If @JoinTable not provided, Hibernate will generate for you, 
+	* name will be USERDETAILS_LISTOFCOLLAGES
+	* Fetch Type Eager will load the Collection of Objects when this object loads
+	*/
+	@ElementCollection(fetch = FetchType.EAGER)
+	@JoinTable(name = "USER_COLLAGE", joinColumns = @JoinColumn(name = "USER_COLLAGE_ID"))
+	private Set<Collage> listOfCollages = new HashSet<Collage>();
+
 	/** @Lob Lob datatype */
 	private String description;
 
@@ -86,6 +101,22 @@ public class UserDetails {
 
 	public void setListOfAddresses(Collection<Address> listOfAddresses) {
 		this.listOfAddresses = listOfAddresses;
+	}
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
+	public Set<Collage> getListOfCollages() {
+		return listOfCollages;
+	}
+
+	public void setListOfCollages(Set<Collage> listOfCollages) {
+		this.listOfCollages = listOfCollages;
 	}
 
 }
