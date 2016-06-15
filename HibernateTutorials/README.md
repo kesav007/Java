@@ -14,5 +14,6 @@
 			<li>@JoinTable, @JoinColumn, @ElementCollection, Collection Configuration</li>
 			<li>Proxy Objects</li>
 			<li>Eager vs Lazy</li>
+			<li>One-to-One</li>
 		</ol>
 </h5>

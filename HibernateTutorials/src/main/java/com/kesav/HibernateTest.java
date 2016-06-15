@@ -8,12 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class HibernateTest {
-	
+
 	private Logger logger = LoggerFactory.getLogger(HibernateTest.class);
 
 	public static void main(String[] args) {
-		
-		UserDetails kesav = new UserDetails();		
+
+		UserDetails kesav = new UserDetails();
 		kesav.setUserName("Kesav");
 		kesav.setJoinedDate(new Date());
 		kesav.setDescription("Description of the user goes here");
@@ -37,26 +37,28 @@ public class HibernateTest {
 		Collage kesavsMasters = new Collage("SDSMT");
 		kesav.getListOfCollages().add(kesavsEngg);
 		kesav.getListOfCollages().add(kesavsMasters);
-		
-		
+		Vehicle vehicle = new Vehicle("Honda");
+		kesav.setVehicle(vehicle);
+
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(kesav);
+		session.save(vehicle);
 		session.getTransaction().commit();
 		session.close();
-		
-		kesav = null;		
-		
+
+		kesav = null;
+
 		session = sessionFactory.openSession();
 		session.beginTransaction();
-		kesav = session.get(UserDetails.class, 1);		
+		kesav = session.get(UserDetails.class, 1);
 		session.close();
 		System.out.println(kesav.getUserName());
 		System.out.println(kesav.getCompany());
 		System.out.println(kesav.getListOfCollages().size());
 		HibernateUtil.shutdown();
-		
+
 		/*- Only Collections are lazy loaded
 		 * if eager type not specified then its lazyly loaded
 		 * check getCompany, getUserName

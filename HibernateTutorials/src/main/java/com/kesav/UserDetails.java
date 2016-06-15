@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -62,6 +63,10 @@ public class UserDetails {
 
 	/** @Lob Lob datatype */
 	private String description;
+
+	@OneToOne
+	@JoinColumn(name = "vehicle_id")
+	private Vehicle vehicle;
 
 	public String getDescription() {
 		return description;
@@ -117,6 +122,14 @@ public class UserDetails {
 
 	public void setListOfCollages(Set<Collage> listOfCollages) {
 		this.listOfCollages = listOfCollages;
+	}
+
+	public Vehicle getVehicle() {
+		return vehicle;
+	}
+
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
 	}
 
 }
