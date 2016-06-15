@@ -6,7 +6,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Company {
 
-	@Column(name = "COMPANY_NAME")
+	@Column(name = "company_name")
 	private String name;
 	private String designation;
 

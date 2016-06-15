@@ -37,14 +37,20 @@ public class HibernateTest {
 		Collage kesavsMasters = new Collage("SDSMT");
 		kesav.getListOfCollages().add(kesavsEngg);
 		kesav.getListOfCollages().add(kesavsMasters);
-		Vehicle vehicle = new Vehicle("Honda");
+		Vehicle vehicle = new Vehicle("Honda", kesav);
 		kesav.setVehicle(vehicle);
+		Computer dell = new Computer("Dell Latitude", kesav);
+		Computer mac = new Computer("Mac", kesav);
+		kesav.getComputers().add(dell);
+		kesav.getComputers().add(mac);
 
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(kesav);
 		session.save(vehicle);
+		session.save(dell);
+		session.save(mac);
 		session.getTransaction().commit();
 		session.close();
 

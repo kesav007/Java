@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -14,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -29,6 +31,7 @@ public class UserDetails {
 
 	@Id
 	@GeneratedValue
+	@Column(name="user_id")
 	private int userId;
 	/** @Transient // annotation used for not saving to the database */
 	private String userName;
@@ -47,9 +50,9 @@ public class UserDetails {
 	 * HiLo doesn't support Oracle for Oracle its Seqhilo
 	 */
 	@ElementCollection
-	@JoinTable(name = "USER_ADDRESS", joinColumns = @JoinColumn(name = "USER_ID"))
+	@JoinTable(name = "user_address", joinColumns = @JoinColumn(name = "user_id") )
 	@GenericGenerator(strategy = "seqhilo", name = "hilo-gen")
-	@CollectionId(columns = { @Column(name = "ADDRESS_ID") }, generator = "hilo-gen", type = @Type(type = "long"))
+	@CollectionId(columns = { @Column(name = "address_id") }, generator = "hilo-gen", type = @Type(type = "long") )
 	private Collection<Address> listOfAddresses = new ArrayList<Address>();
 
 	/*-
@@ -58,7 +61,7 @@ public class UserDetails {
 	* Fetch Type Eager will load the Collection of Objects when this object loads
 	*/
 	@ElementCollection(fetch = FetchType.EAGER)
-	@JoinTable(name = "USER_COLLAGE", joinColumns = @JoinColumn(name = "USER_COLLAGE_ID"))
+	@JoinTable(name = "user_collage", joinColumns = @JoinColumn(name = "user_id") )
 	private Set<Collage> listOfCollages = new HashSet<Collage>();
 
 	/** @Lob Lob datatype */
@@ -67,6 +70,10 @@ public class UserDetails {
 	@OneToOne
 	@JoinColumn(name = "vehicle_id")
 	private Vehicle vehicle;
+
+	@OneToMany
+	@JoinTable(name = "user_computer", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns=@JoinColumn(name="computer_id") )
+	private List<Computer> computers = new ArrayList<Computer>();
 
 	public String getDescription() {
 		return description;
@@ -130,6 +137,14 @@ public class UserDetails {
 
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
+	}
+
+	public List<Computer> getComputers() {
+		return computers;
+	}
+
+	public void setComputers(List<Computer> computers) {
+		this.computers = computers;
 	}
 
 }

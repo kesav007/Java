@@ -15,5 +15,6 @@
 			<li>Proxy Objects</li>
 			<li>Eager vs Lazy</li>
 			<li>One-to-One</li>
+			<li>One-to-Many and Many-to-One</li>
 		</ol>
 </h5>
