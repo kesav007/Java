@@ -14,6 +14,7 @@ public class Vehicle {
 	@GeneratedValue
 	private int vechile_id;
 	private String vechile_name;
+
 	@OneToOne
 	@JoinColumn(name = "user_id")
 	private UserDetails user;
@@ -21,8 +22,15 @@ public class Vehicle {
 	public Vehicle() {
 	}
 
-	public Vehicle(String vechile_name, UserDetails user) {
+	public Vehicle(String vechile_name) {
 		this.vechile_name = vechile_name;
+	}
+
+	public UserDetails getUser() {
+		return user;
+	}
+
+	public void setUser(UserDetails user) {
 		this.user = user;
 	}
 }

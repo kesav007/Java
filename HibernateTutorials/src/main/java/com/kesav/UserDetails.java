@@ -68,7 +68,7 @@ public class UserDetails {
 	private String description;
 
 	@OneToOne
-	@JoinColumn(name = "vehicle_id")
+	@JoinColumn(name="vechicle_id")
 	private Vehicle vehicle;
 
 	@OneToMany
