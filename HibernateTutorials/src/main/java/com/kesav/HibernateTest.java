@@ -9,8 +9,6 @@ import org.slf4j.LoggerFactory;
 
 public class HibernateTest {
 
-	private Logger logger = LoggerFactory.getLogger(HibernateTest.class);
-
 	public static void main(String[] args) {
 
 		UserDetails kesav = new UserDetails();
@@ -37,28 +35,53 @@ public class HibernateTest {
 		Collage kesavsMasters = new Collage("SDSMT");
 		kesav.getListOfCollages().add(kesavsEngg);
 		kesav.getListOfCollages().add(kesavsMasters);
-		Vehicle vehicle = new Vehicle("Honda");
+		Vehicle vehicle = new Vehicle();
+		vehicle.setVechile_name("Honda");
 		vehicle.setUser(kesav);
 		kesav.setVehicle(vehicle);
-		
-		Computer dell = new Computer("Dell Latitude", kesav);
-		Computer mac = new Computer("Mac", kesav);
+
+		// One-to-Many
+		Computer dell = new Computer("Dell Latitude");
+		Computer mac = new Computer("Mac");
 		kesav.getComputers().add(dell);
 		kesav.getComputers().add(mac);
 
+		// Many-to-One
+		Shoe nike = new Shoe("Nike");
+		// kesav.getShoes().add(nike);
+		nike.setUser(kesav);
+		Shoe addidas = new Shoe("Addidas");
+		// kesav.getShoes().add(addidas);
+		addidas.setUser(kesav);
+
 		UserDetails manju = new UserDetails();
 		manju.setUserName("Manju");
-//		manju.getComputers().add(dell);
-//		manju.getComputers().add(mac);
+		manju.setVehicle(vehicle);
+		// manju.getComputers().add(dell);
+		// manju.getComputers().add(mac);
+
+		Dress dress = new Dress("Raymonds");
+		Pant jeanspant = new Pant("Levis", "Jeans");
+		Pant formalpant = new Pant("JCPenny", "Formal Black");
+		Shirt tshirt = new Shirt("Gucci", "T-Shirt");
+		Shirt formalshirt = new Shirt("Buffalo", "Formal Shirt");
 
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		session.save(kesav);
-		session.save(vehicle);
-		session.save(dell);
-		session.save(mac);
+		session.persist(kesav);
 		session.save(manju);
+		session.save(vehicle);
+		// cascade applied for computers
+		// session.save(dell);
+		// session.save(mac);
+		session.save(nike);
+		session.save(addidas);
+		session.save(dress);
+		session.save(jeanspant);
+		session.save(formalpant);
+		session.save(tshirt);
+		session.save(formalshirt);
 		session.getTransaction().commit();
 		session.close();
 

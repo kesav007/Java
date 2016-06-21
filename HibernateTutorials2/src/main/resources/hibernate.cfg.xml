@@ -13,5 +13,6 @@
 		<mapping class="com.keshav.UserDetails" />
 		<mapping class="com.keshav.Spouse" />
 		<mapping class="com.keshav.Vehicle" />
+		<mapping class="com.keshav.Course" />
 	</session-factory>
 </hibernate-configuration>

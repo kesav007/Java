@@ -19,18 +19,21 @@ public class Vehicle {
 	@JoinColumn(name = "user_id")
 	private UserDetails user;
 
-	public Vehicle() {
-	}
-
-	public Vehicle(String vechile_name) {
-		this.vechile_name = vechile_name;
-	}
-
 	public UserDetails getUser() {
 		return user;
 	}
 
 	public void setUser(UserDetails user) {
 		this.user = user;
+	}
+
+
+	public String getVechile_name() {
+		return vechile_name;
+	}
+
+
+	public void setVechile_name(String vechile_name) {
+		this.vechile_name = vechile_name;
 	}
 }

@@ -27,13 +27,21 @@ public class HibernateTester {
 		kesav.setSpouse(spouse);
 		spouse.setUserDetails(kesav);
 
-		Spouse spouse2 = new Spouse("Regina", "Mccott");
+		Spouse spouse2 = new Spouse("Soundarya", "Mccott");
 		spouse2.setUserDetails(kesav);
 
 		Vehicle honda = new Vehicle("Accord");
 		Vehicle chevy = new Vehicle("Lumina");
 		kesav.getVehicles().add(chevy);
 		kesav.getVehicles().add(honda);
+
+		Course java = new Course("Java Course");
+		Course hibernate = new Course("Hibernate Course");
+		Course businessObjects = new Course("Bussiness Objects");
+
+		kesav.getCourses().add(java);
+		kesav.getCourses().add(hibernate);
+
 
 		// ###########################################
 		UserDetails manju = new UserDetails("Manjusree Saamavedam");
@@ -59,6 +67,18 @@ public class HibernateTester {
 		Vehicle accura = new Vehicle("Accura 3.2L");
 		manju.getVehicles().add(accura);
 
+		/*-
+		 * Vechicles is Many to One Relation with User Details
+		 * So Unique Constraint formed, honda is already assigned to kesav
+		 * so it can not be assigned to another user
+		 * manju.getVehicles().add(honda);
+		 */
+
+		manju.getCourses().add(java);
+		manju.getCourses().add(businessObjects);
+
+		// #####################################
+
 		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
@@ -71,6 +91,11 @@ public class HibernateTester {
 		session.save(spouse1);
 		session.save(spouse2);
 		session.save(accura);
+
+		session.save(hibernate);
+		session.save(java);
+		session.save(businessObjects);
+
 		session.getTransaction().commit();
 		session.close();
 		HibernateUtil.shutdown();

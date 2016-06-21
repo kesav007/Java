@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -21,6 +22,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -31,7 +33,7 @@ public class UserDetails {
 
 	@Id
 	@GeneratedValue
-	@Column(name="user_id")
+	@Column(name = "user_id")
 	private int userId;
 	/** @Transient // annotation used for not saving to the database */
 	private String userName;
@@ -50,9 +52,9 @@ public class UserDetails {
 	 * HiLo doesn't support Oracle for Oracle its Seqhilo
 	 */
 	@ElementCollection
-	@JoinTable(name = "user_address", joinColumns = @JoinColumn(name = "user_id") )
+	@JoinTable(name = "user_address", joinColumns = @JoinColumn(name = "user_id"))
 	@GenericGenerator(strategy = "seqhilo", name = "hilo-gen")
-	@CollectionId(columns = { @Column(name = "address_id") }, generator = "hilo-gen", type = @Type(type = "long") )
+	@CollectionId(columns = { @Column(name = "address_id") }, generator = "hilo-gen", type = @Type(type = "long"))
 	private Collection<Address> listOfAddresses = new ArrayList<Address>();
 
 	/*-
@@ -61,18 +63,18 @@ public class UserDetails {
 	* Fetch Type Eager will load the Collection of Objects when this object loads
 	*/
 	@ElementCollection(fetch = FetchType.EAGER)
-	@JoinTable(name = "user_collage", joinColumns = @JoinColumn(name = "user_id") )
+	@JoinTable(name = "user_collage", joinColumns = @JoinColumn(name = "user_id"))
 	private Set<Collage> listOfCollages = new HashSet<Collage>();
 
 	/** @Lob Lob datatype */
 	private String description;
 
 	@OneToOne
-	@JoinColumn(name="vechicle_id")
+	@JoinColumn(name = "vechicle_id")
 	private Vehicle vehicle;
 
-	@OneToMany
-	@JoinTable(name = "user_computer", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns=@JoinColumn(name="computer_id") )
+	@OneToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(name = "user_computer", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "computer_id"))
 	private List<Computer> computers = new ArrayList<Computer>();
 
 	public String getDescription() {
@@ -146,5 +148,4 @@ public class UserDetails {
 	public void setComputers(List<Computer> computers) {
 		this.computers = computers;
 	}
-
 }

@@ -16,6 +16,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -69,7 +71,12 @@ public class UserDetails {
 	private Spouse spouse;
 
 	@OneToMany
+	@JoinTable(name = "user_vehicle", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "vehicle_id"))
 	private List<Vehicle> vehicles = new ArrayList<Vehicle>();
+
+	@ManyToMany
+	@JoinTable(name = "user_course", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "course_id"))
+	private List<Course> courses = new ArrayList<Course>();
 
 	public UserDetails() {
 	}
@@ -152,6 +159,14 @@ public class UserDetails {
 
 	public void setVehicles(List<Vehicle> vehicles) {
 		this.vehicles = vehicles;
+	}
+
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
 	}
 
 }

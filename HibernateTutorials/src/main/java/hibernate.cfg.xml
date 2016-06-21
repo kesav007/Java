@@ -13,5 +13,9 @@
 		<mapping class="com.kesav.UserDetails" />
 		<mapping class="com.kesav.Vehicle" />
 		<mapping class="com.kesav.Computer" />
+		<mapping class="com.kesav.Shoe" />
+		<mapping class="com.kesav.Dress" />
+		<mapping class="com.kesav.Shirt" />
+		<mapping class="com.kesav.Pant" />
 	</session-factory>
 </hibernate-configuration>

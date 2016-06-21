@@ -16,5 +16,7 @@
 			<li>Eager vs Lazy</li>
 			<li>One-to-One</li>
 			<li>One-to-Many and Many-to-One</li>
+			<li>Cascade, NotFound, persist</li>
+			<li> Single Table Stragegy</li>
 		</ol>
 </h5>
