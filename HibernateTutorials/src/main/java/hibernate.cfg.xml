@@ -10,6 +10,8 @@
 		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.hbm2ddl.auto">create</property>
+		
+		<!-- 
 		<mapping class="com.kesav.UserDetails" />
 		<mapping class="com.kesav.Vehicle" />
 		<mapping class="com.kesav.Computer" />
@@ -17,5 +19,10 @@
 		<mapping class="com.kesav.Dress" />
 		<mapping class="com.kesav.Shirt" />
 		<mapping class="com.kesav.Pant" />
+		 -->
+		
+		<mapping class="com.kesav.Vehicle2" />		
+		<mapping class="com.kesav.FourWheeler" />		
+		<mapping class="com.kesav.TwoWheeler" />
 	</session-factory>
 </hibernate-configuration>
